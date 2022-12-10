@@ -115,10 +115,10 @@ echo "1. Configuration options."
 #
 echo "1.1 Hoster Public Internet Configuration."
 PUBLIC_IFACE="vmbr0"
-PUBLIC_IP4_ADDR="XX.XX.XX.XX"
+PUBLIC_IP4_ADDR=""
 PUBLIC_IP6_ADDR=""
-PUBLIC_IP4_RANGE="XX.XX.XX.XX/XX"
-PUBLIC_IP4_BROADCAST="XX.XX.XX.XX"
+PUBLIC_IP4_RANGE=""
+PUBLIC_IP4_BROADCAST=""
 
 #
 # 1.1.1 DHCP
@@ -183,7 +183,6 @@ IPSET="$(which ipset)"
 #
 echo "1.6 Other Configuration."
 PUBLIC_IP4_GATE102=""
-
 PUBLIC_IP4_HOST102=""
 
 ###########################################################################
@@ -572,4 +571,5 @@ echo "4.3 mangle table"
 #
 
 echo "end"
-service fail2ban restart
+#service fail2ban restart
+#systemctl restart fail2ban.service

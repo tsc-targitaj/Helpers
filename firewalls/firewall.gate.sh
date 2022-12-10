@@ -526,48 +526,48 @@ $IPT4 -A allowed -p TCP -j DROP
 # TCP rules---эти правила для недоверенных сетей.-------------------------------
 #
 echo "4.1.3 TCP rules"
-$IPT4 -A tcp_pts        -p TCP  -s 0/0						-d 0/0						--dport 6014                    -j allowed      # SSH
-$IPT4 -A tcp_pts        -p TCP  -s 0/0						-d 0/0						--dport 22                      -j allowed      # SSH
-$IPT4 -A tcp_pts        -p TCP  -s 0/0						-d 0/0						--dport 53                      -j allowed      # DNS
-#$IPT4 -A tcp_pts       -p TCP  -s $LAN_IP4_RMADM55				-d 0/0						--dport 80                      -j allowed      # http
-$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_trust src		-d 0/0						--dport 80                      -j allowed      # http
-$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_front src		-d 0/0						--dport 80                      -j allowed      # http
-#$IPT4 -A tcp_pts       -p TCP  -s $LAN_IP4_RMADM55				-d 0/0						--dport 443                     -j allowed      # https
-$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_trust src		-d 0/0						--dport 443                     -j allowed      # https
-$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_front src		-d 0/0						--dport 443                     -j allowed      # https
-$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_lan_all src		-d 0/0						--dport 443                     -j allowed      # https
-$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_ipsec src		-d 0/0						--dport 1701                    -j ACCEPT       # L2TP
-#$IPT4 -A tcp_pts       -p TCP  -s 0/0						-d 0/0						--dport 1194                    -j allowed      # OVPN TCP
-#$IPT4 -A tcp_pts       -p TCP  -s $LAN_55_IP4_RANGE				-d 0/0						--dport 3128                    -j allowed      # squid
-#$IPT4 -A tcp_pts       -p TCP  -m set --match-set set_front src		-d 0/0						--dport 1040                    -j allowed      # superset web
-#$IPT4 -A tcp_pts       -p TCP  -s $PUBLIC_IP4_GATE811				-d 0/0						--dport 9111                    -j allowed      # bareos
-#$IPT4 -A tcp_pts       -p TCP  -s $LAN_IP4_ZABBIX102				-d 0/0						--dport 10050                   -j allowed      # zabbix
+$IPT4 -A tcp_pts        -p TCP  -s 0/0						-d 0/0						--dport 6014			-j allowed      # SSH
+$IPT4 -A tcp_pts        -p TCP  -s 0/0						-d 0/0						--dport 22			-j allowed      # SSH
+$IPT4 -A tcp_pts        -p TCP  -s 0/0						-d 0/0						--dport 53			-j allowed      # DNS
+#$IPT4 -A tcp_pts       -p TCP  -s $LAN_IP4_RMADM55				-d 0/0						--dport 80			-j allowed      # http
+$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_trust src		-d 0/0						--dport 80			-j allowed      # http
+$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_front src		-d 0/0						--dport 80			-j allowed      # http
+#$IPT4 -A tcp_pts       -p TCP  -s $LAN_IP4_RMADM55				-d 0/0						--dport 443			-j allowed      # https
+$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_trust src		-d 0/0						--dport 443			-j allowed      # https
+$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_front src		-d 0/0						--dport 443			-j allowed      # https
+$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_lan_all src		-d 0/0						--dport 443			-j allowed      # https
+$IPT4 -A tcp_pts        -p TCP  -m set --match-set set_ipsec src		-d 0/0						--dport 1701			-j ACCEPT       # L2TP
+#$IPT4 -A tcp_pts       -p TCP  -s 0/0						-d 0/0						--dport 1194			-j allowed      # OVPN TCP
+#$IPT4 -A tcp_pts       -p TCP  -s $LAN_55_IP4_RANGE				-d 0/0						--dport 3128			-j allowed      # squid
+#$IPT4 -A tcp_pts       -p TCP  -m set --match-set set_front src		-d 0/0						--dport 1040			-j allowed      # superset web
+#$IPT4 -A tcp_pts       -p TCP  -s $PUBLIC_IP4_GATE811				-d 0/0						--dport 9111			-j allowed      # bareos
+#$IPT4 -A tcp_pts       -p TCP  -s $LAN_IP4_ZABBIX102				-d 0/0						--dport 10050			-j allowed      # zabbix
 
 #
 # UDP ports---эти правила для недоверенных сетей--------------------------------
 #
 echo "4.1.3 UDP ports"
-$IPT4 -A udp_pts        -p UDP  -s 0/0						-d 0/0						--dport 53                      -j ACCEPT       # DNS
-$IPT4 -A udp_pts        -p UDP  -m set --match-set set_lan_local src		-d 0/0						--dport 123                     -j ACCEPT       # NTP
-$IPT4 -A udp_pts        -p UDP  -m set --match-set set_ipsec src		-d 0/0						--dport 500                     -j ACCEPT       # ipsec
-$IPT4 -A udp_pts        -p UDP  -s 0/0						-d 0/0						--dport 1194                    -j ACCEPT       # OVPN
-$IPT4 -A udp_pts        -p UDP  -m set --match-set set_ipsec src		-d 0/0						--dport 1701                    -j ACCEPT       # L2TP
-$IPT4 -A udp_pts        -p UDP  -s 0/0						-d 0/0						--dport 17500                   -j DROP         #
+$IPT4 -A udp_pts        -p UDP  -s 0/0						-d 0/0						--dport 53			-j ACCEPT       # DNS
+$IPT4 -A udp_pts        -p UDP  -m set --match-set set_lan_local src		-d 0/0						--dport 123			-j ACCEPT       # NTP
+$IPT4 -A udp_pts        -p UDP  -m set --match-set set_ipsec src		-d 0/0						--dport 500			-j ACCEPT       # ipsec
+$IPT4 -A udp_pts        -p UDP  -s 0/0						-d 0/0						--dport 1194			-j ACCEPT       # OVPN
+$IPT4 -A udp_pts        -p UDP  -m set --match-set set_ipsec src		-d 0/0						--dport 1701			-j ACCEPT       # L2TP
+$IPT4 -A udp_pts        -p UDP  -s 0/0						-d 0/0						--dport 17500			-j DROP         #
 
 #
 # In Microsoft Networks you will be swamped by broadcasts. These lines
 # will prevent them from showing up in the logs.
 #
 
-# $IPT4 -A udp_pts      -p UDP  -s 0/0  -i $PUBLIC_IFACE			-d $PUBLIC_IP4_BROADCAST			--dport 135:139                 -j DROP         #
-$IPT4 -A udp_pts        -p UDP  -s 0/0						-d 0/0						--dport 135:139                 -j DROP         #
+# $IPT4 -A udp_pts      -p UDP  -s 0/0  -i $PUBLIC_IFACE			-d $PUBLIC_IP4_BROADCAST			--dport 135:139			-j DROP         #
+$IPT4 -A udp_pts        -p UDP  -s 0/0						-d 0/0						--dport 135:139			-j DROP         #
 
 #
 # If we get DHCP requests from the Outside of our network, our logs will
 # be swamped as well. This rule will block them from getting logged.
 #
 
-$IPT4 -A udp_pts        -p UDP  -s 0/0						-d 255.255.255.255				--dport 67:68                   -j DROP         #
+$IPT4 -A udp_pts        -p UDP  -s 0/0						-d 255.255.255.255				--dport 67:68			-j DROP         #
 
 #
 # ICMP rules--------------------------------------------------------------------
@@ -649,7 +649,7 @@ echo "4.1.5 FORWARD chain"
 # Здесь правила для отладки ----------------------------------------------------
 #
 
-#$IPT4 -A FORWARD       -p tcp  -s 0/0                                          -d 0/0                                          --dport 3113                    -j LOG --log-prefix "IPT FORWARD 3113 "
+#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d 0/0						--dport 3113			-j LOG --log-prefix "IPT FORWARD 3113 "
 
 #
 # Bad TCP packets we don't want-------------------------------------------------
@@ -669,59 +669,33 @@ $IPT4 -A FORWARD -m state --state ESTABLISHED,RELATED -j ACCEPT
 #-------------------------------------------------------------------------------
 echo "4.1.5 DMZ section"
 
-#$IPT4 -A FORWARD       -p tcp  -i $LAN_42_IFACE -s $LAN_IP4_SUPERSET42		-d $LAN_IP4_AFT_DB41				--dport 5432                    -j ACCEPT
-#$IPT4 -A FORWARD       -p all  -i $LAN_42_IFACE				-m set ! --match-set set_lan_all dst		-o $PUBLIC_IFACE                -j ACCEPT
-#$IPT4 -A FORWARD       -p all  -i $PUBLIC_IFACE				-o $LAN_42_IFACE -m state --state ESTABLISHED,RELATED                           -j ACCEPT
+#$IPT4 -A FORWARD       -p tcp  -i $LAN_42_IFACE -s $LAN_IP4_SUPERSET42		-d $LAN_IP4_AFT_DB41				--dport 5432			-j ACCEPT
+#$IPT4 -A FORWARD       -p all  -i $LAN_42_IFACE				-m set ! --match-set set_lan_all dst		-o $PUBLIC_IFACE		-j ACCEPT
+#$IPT4 -A FORWARD       -p all  -i $PUBLIC_IFACE				-o $LAN_42_IFACE -m state --state ESTABLISHED,RELATED				-j ACCEPT
 
-#$IPT4 -A FORWARD       -p all  -m set --match-set set_lan_all src		-o $LAN_42_IFACE                                                                -j ACCEPT
-#$IPT4 -A FORWARD       -p all  -i $LAN_41_IFACE				-o $LAN_42_IFACE                                                                -j ACCEPT
-#$IPT4 -A FORWARD       -p all  -i $LAN_42_IFACE				-o $LAN_41_IFACE -m state --state ESTABLISHED,RELATED                           -j ACCEPT
+#$IPT4 -A FORWARD       -p all  -m set --match-set set_lan_all src		-o $LAN_42_IFACE								-j ACCEPT
+#$IPT4 -A FORWARD       -p all  -i $LAN_41_IFACE				-o $LAN_42_IFACE								-j ACCEPT
+#$IPT4 -A FORWARD       -p all  -i $LAN_42_IFACE				-o $LAN_41_IFACE -m state --state ESTABLISHED,RELATED				-j ACCEPT
 
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_MAIL42                                                              -j allowed
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_SUPERSET42				--dport 22                      -j allowed
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_OTRS42                                                              -j allowed
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_REDMINE42                                                           -j allowed
-#$IPT4 -A FORWARD       -p tcp  -s $LAN_IP4_REDMINE42				-d $LAN_IP4_AFT_DB41				--dport 5432                    -j allowed
-#$IPT4 -A FORWARD       -p all  -i $LAN_42_IFACE                                                                                                                -j DROP
+#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_MAIL42								-j allowed
+#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_SUPERSET42				--dport 22			-j allowed
+#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_OTRS42								-j allowed
+#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_REDMINE42								-j allowed
+#$IPT4 -A FORWARD       -p tcp  -s $LAN_IP4_REDMINE42				-d $LAN_IP4_AFT_DB41				--dport 5432			-j allowed
+#$IPT4 -A FORWARD       -p all  -i $LAN_42_IFACE														-j DROP
 
 #-------------------------------------------------------------------------------
 # LAN section ------------------------------------------------------------------
 #-------------------------------------------------------------------------------
 echo "4.1.5 LAN section"
-$IPT4 -A FORWARD        -p all  -m set --match-set set_lan_local src		-d 0/0						-o $PUBLIC_IFACE                -j ACCEPT
-$IPT4 -A FORWARD        -p all  -m set --match-set set_lan_all src		-m set --match-set set_lan_all dst                                              -j ACCEPT
+$IPT4 -A FORWARD        -p all  -m set --match-set set_lan_local src		-d 0/0						-o $PUBLIC_IFACE		-j ACCEPT
+$IPT4 -A FORWARD        -p all  -m set --match-set set_lan_all src		-m set --match-set set_lan_all dst						-j ACCEPT
 
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_TRADE			--dport 8001                    -j allowed      # 
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_TRADE			--dport 8011                    -j allowed      # 
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_TRADE			--dport 8002                    -j allowed      # 
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_TRADE			--dport 8012                    -j allowed      # 
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_TRADE			--dport 7621                    -j allowed      # 
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_TRADE			--dport 17621                   -j allowed      # 
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_MT4_REAL			--dport 3389                    -j allowed      # RDP
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_MT4_DEMO			--dport 3389                    -j allowed      # RDP
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_TRADE			--dport 5432                    -j allowed      # psql
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_DB				--dport 5432                    -j allowed      # psql
-#$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_IP4_SUPERSET105				--dport 5432                    -j allowed      # psql
-#$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_IP4_DOCKER42				--dport 5432                    -j allowed      # psql
-#$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_IP4_ODOO42				--dport 5432                    -j allowed      # psql
-#$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_IP4_AFT_DB105				--dport 3306                    -j allowed      # mysql
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_SUPPORTER55				--dport 5432                    -j allowed      # psql
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_TRADE			--dport 3113                    -j allowed      # AMQ
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_TRADE			--dport 13113                   -j allowed      # AMQ
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_AFT_HS55				--dport 22                      -j allowed      # SSH
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_TRADE			--dport 22                      -j allowed      # SSH
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_AFT_CONNECTOR55			--dport 22                      -j allowed      # SSH
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_DB				--dport 22                      -j allowed      # SSH
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_NET_CORE			--dport 22                      -j allowed      # SSH
-
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_REPORT55				--dport 22                      -j allowed      # SSH
-#$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_SUPPORTER55				--dport 22                      -j allowed      # SSH
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_AFT_DUMMY			--dport 22                      -j allowed      # SSH
-#$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_IP4_SUPERSET105				--dport 22                      -j allowed      # SSH
-#$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_IP4_ODOO42				--dport 22                      -j allowed      # SSH
-$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_DOCKER				--dport 22                      -j allowed      # SSH
-#$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_IP4_TESTOTRS42				--dport 22                      -j allowed      # SSH
-#$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_IP4_BITCOIND42				--dport 22			-j allowed      # SSH
+$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_MT4_REAL			--dport 3389			-j allowed      # RDP
+$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_MT4_DEMO			--dport 3389			-j allowed      # RDP
+#$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_IP4_ODOO42				--dport 5432			-j allowed      # psql
+#$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_IP4_AFT_DB105				--dport 3306			-j allowed      # mysql
+$IPT4 -A FORWARD        -p tcp  -s 0/0						-d $LAN_PRI_IP4_NET_CORE			--dport 22			-j allowed      # SSH
 #$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_ANSIBLE55				--dport 22			-j allowed      # SSH
 #$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_ZABBIX_PROXY55			--dport 22			-j allowed      # SSH
 #$IPT4 -A FORWARD       -p tcp  -s 0/0						-d $LAN_IP4_ZABBIX_PROXY55			--dport 10051			-j allowed      # zabbix
@@ -783,19 +757,18 @@ echo "4.2.3 Create content in user specified chains"
 # 4.2.4 PREROUTING chain--------------------------------------------------------
 #
 echo "4.2.4 PREROUTING chain"
-#$IPT4 -t nat -A PREROUTING     -p tcp  -s $LAN_55_IP4_RANGE			! -d $LAN_55_IP4_RANGE				--dport 80                      -j REDIRECT --to-port 3128
-#$IPT4 -t nat -A PREROUTING -p tcp      -m set --match-set set_trust src	-d $PUBLIC_IP4_ADDR				--dport 6014                    -j DNAT --to-destination $LAN_IP4_LOCAL55:6014
+#$IPT4 -t nat -A PREROUTING     -p tcp  -s $LAN_55_IP4_RANGE			! -d $LAN_55_IP4_RANGE				--dport 80			-j REDIRECT --to-port 3128
+#$IPT4 -t nat -A PREROUTING -p tcp      -m set --match-set set_trust src	-d $PUBLIC_IP4_ADDR				--dport 6014			-j DNAT --to-destination $LAN_IP4_LOCAL55:6014
 
-#$IPT4 -t nat -A PREROUTING     -p tcp  -s $PUBLIC_IP4_CRM31			-d $PUBLIC_IP4_ADDR				--dport 8001                    -j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:8001
-#$IPT4 -t nat -A PREROUTING     -p tcp  -s $PUBLIC_IP4_CRM31			-d $PUBLIC_IP4_ADDR				--dport 8011                    -j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:8011
+#$IPT4 -t nat -A PREROUTING     -p tcp  -s $PUBLIC_IP4_CRM31			-d $PUBLIC_IP4_ADDR				--dport 8001			-j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:8001
+#$IPT4 -t nat -A PREROUTING     -p tcp  -s $PUBLIC_IP4_CRM31			-d $PUBLIC_IP4_ADDR				--dport 8011			-j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:8011
 
-$IPT4 -t nat -A PREROUTING      -p tcp  -m set --match-set set_amq src		-d $PUBLIC_IP4_ADDR				--dport 3113                    -j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:3113
-$IPT4 -t nat -A PREROUTING      -p tcp  -m set --match-set set_amq src		-d $PUBLIC_IP4_ADDR				--dport 13113                   -j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:13113
+$IPT4 -t nat -A PREROUTING      -p tcp  -m set --match-set set_amq src		-d $PUBLIC_IP4_ADDR				--dport 3113			-j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:3113
+$IPT4 -t nat -A PREROUTING      -p tcp  -m set --match-set set_amq src		-d $PUBLIC_IP4_ADDR				--dport 13113			-j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:13113
 
-#$IPT4 -t nat -A PREROUTING     -p tcp  -m set --match-set set_psql src		-d $PUBLIC_IP4_ADDR				--dport 54351                   -j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:5432
-$IPT4 -t nat -A PREROUTING      -p tcp  -m set --match-set set_psql src		-d $PUBLIC_IP4_ADDR				--dport 54391                   -j DNAT --to-destination $LAN_PRI_IP4_AFT_DB:5432
-
-#$IPT4 -t nat -A PREROUTING     -p tcp  -m set --match-set set_trust src	-d $PUBLIC_IP4_ADDR				--dport 54351                   -j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:5432
+#$IPT4 -t nat -A PREROUTING     -p tcp  -m set --match-set set_psql src		-d $PUBLIC_IP4_ADDR				--dport 54351			-j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:5432
+$IPT4 -t nat -A PREROUTING      -p tcp  -m set --match-set set_psql src		-d $PUBLIC_IP4_ADDR				--dport 54391			-j DNAT --to-destination $LAN_PRI_IP4_AFT_DB:5432
+#$IPT4 -t nat -A PREROUTING     -p tcp  -m set --match-set set_trust src	-d $PUBLIC_IP4_ADDR				--dport 54351			-j DNAT --to-destination $LAN_PRI_IP4_AFT_TRADE:5432
 
 
 #
@@ -807,14 +780,14 @@ echo "4.2.5 POSTROUTING chain"
 # Enable simple IP Forwarding and Network Address Translation-------------------
 #
 
-$IPT4 -t nat -A POSTROUTING		-m set --match-set set_lan_local src	-m set ! --match-set set_lan_all dst		-o $PUBLIC_IFACE                -j SNAT --to-source $PUBLIC_IP4_ADDR
-#$IPT4 -t nat -A POSTROUTING		-s $LAN_52_IP4_RANGE			-d 0/0						-o $PUBLIC_IFACE                -j SNAT --to-source $PUBLIC_IP4_ADDR
+$IPT4 -t nat -A POSTROUTING		-m set --match-set set_lan_local src	-m set ! --match-set set_lan_all dst		-o $PUBLIC_IFACE		-j SNAT --to-source $PUBLIC_IP4_ADDR
+#$IPT4 -t nat -A POSTROUTING		-s $LAN_52_IP4_RANGE			-d 0/0						-o $PUBLIC_IFACE		-j SNAT --to-source $PUBLIC_IP4_ADDR
 
 #
 # 4.2.6 OUTPUT chain------------------------------------------------------------
 #
 echo "4.2.6 OUTPUT chain"
-#$IPT4 -t nat -A OUTPUT			-s 0/0					-d $PUBLIC_IP4_INVEST                                                           -j DNAT --to-destination $LAN_IP4_INVEST
+#$IPT4 -t nat -A OUTPUT			-s 0/0					-d $PUBLIC_IP4_INVEST								-j DNAT --to-destination $LAN_IP4_INVEST
 
 ######--------------------------------------------------------------------------
 ######--------------------------------------------------------------------------
@@ -853,4 +826,5 @@ echo "4.3 mangle table"
 # 4.3.8 POSTROUTING chain
 #
 echo "end"
-service fail2ban restart
+#service fail2ban restart
+#systemctl restart fail2ban.service
