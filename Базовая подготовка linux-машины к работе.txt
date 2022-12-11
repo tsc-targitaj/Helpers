@@ -44,7 +44,7 @@ chmod 0700 /root/.ssh/
 touch /root/.ssh/authorized_keys
 chown root:root /root/.ssh/authorized_keys
 chmod 0600 /root/.ssh/authorized_keys
-echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKQ4w3ssjImtplvuX3j5EW7N/enVo2KEsE9XiEjGWvB dalan@mibook1701' | tee -a /root/.ssh/authorized_keys
+echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKQ4w3ssjImtplvuX3j5EW7N/enVo2KEsE9XiEjGWvB mibook1701' | tee -a /root/.ssh/authorized_keys
 
 //создаём в госте tty0 устройство для обеспечения доступа из host-OS по serial подключению
 //внимание, со стороны гипервизора тоже нужно выдать машине устройство Serial Port
