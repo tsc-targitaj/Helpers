@@ -55,3 +55,9 @@ sudo sed -i '/\#PermitRootLogin\ prohibit-password/a PermitRootLogin\ yes' /etc/
 sudo systemctl reload-or-restart sshd.service
 
 //##### Пользовательское #####
+
+//переключение языка ввода по Alt_Shift
+gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Alt>Shift_L']"
+
+//сворачивать окно вторым кликом по иконке в доке
+gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
