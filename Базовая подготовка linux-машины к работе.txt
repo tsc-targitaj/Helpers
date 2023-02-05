@@ -13,8 +13,8 @@ sudo swapoff /swap.img
 passwd root
 
 //разрешаем ssh логин руту по паролю
-sed -i '/\#PermitRootLogin\ prohibit-password/a PermitRootLogin\ yes' /etc/ssh/sshd_config
-systemctl reload-or-restart sshd.service
+sudo sed -i '/\#PermitRootLogin\ prohibit-password/a PermitRootLogin\ yes' /etc/ssh/sshd_config
+sudo systemctl reload-or-restart sshd.service
 
 //настраиваем KeepAlive серверу sshd
 //ставим 10 секунд на проверку со стороны сервера sshd
