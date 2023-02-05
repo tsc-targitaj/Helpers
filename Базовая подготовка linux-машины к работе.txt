@@ -56,12 +56,13 @@ sudo systemctl reload-or-restart sshd.service
 
 //##### Пользовательское #####
 
-//переключение языка ввода по Alt_Shift
+//переключаем язык ввода по Alt_Shift
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Alt>Shift_L']"
 
-//сворачивать окно вторым кликом по иконке в доке
+//сворачиваем окно вторым кликом по иконке в доке
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
+//тюним пользовательский bashrc
 echo "" | tee -a ~/.bashrc
 echo "# Custom options" | tee -a ~/.bashrc
 echo "force_color_prompt=yes" | tee -a ~/.bashrc
