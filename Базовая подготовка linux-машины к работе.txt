@@ -7,7 +7,7 @@ echo 'shopt -s histappend' | sudo tee -a /etc/bash.bashrc
 echo 'PROMPT_COMMAND="history -a;$PROMPT_COMMAND"' | sudo tee -a /etc/bash.bashrc
 
 //отключем файл свопа на корне, у нас есть диск под своп
-swapoff /swap.img
+sudo swapoff /swap.img
 
 //даём пароль руту
 passwd root
@@ -19,9 +19,9 @@ systemctl reload-or-restart sshd.service
 //настраиваем KeepAlive серверу sshd
 //ставим 10 секунд на проверку со стороны сервера sshd
 //и два недошедших от клиента серверу сообщения
-sed -i '/\#ClientAliveInterval/a ClientAliveInterval\ 10' /etc/ssh/sshd_config
-sed -i '/\#ClientAliveCountMax/a ClientAliveCountMax\ 2' /etc/ssh/sshd_config
-systemctl reload-or-restart sshd.service
+sudo sed -i '/\#ClientAliveInterval/a ClientAliveInterval\ 10' /etc/ssh/sshd_config
+sudo sed -i '/\#ClientAliveCountMax/a ClientAliveCountMax\ 2' /etc/ssh/sshd_config
+sudo systemctl reload-or-restart sshd.service
 
 //конфигурим локали
 locale-gen en_US.UTF-8
@@ -34,8 +34,8 @@ update-locale LANGUAGE=en_US.UTF-8
 update-locale LC_ALL=en_US.UTF-8
 
 //доустанавливаем пакеты
-apt update
-apt -y install htop atop iotop jnettop uptimed ipset fail2ban mc aptitude locate nmap iperf
+sudo apt update
+sudo apt -y install htop atop iotop jnettop uptimed ipset fail2ban mc aptitude locate nmap iperf
 
 //создаём и наполняем файл доступа к руту по ключу
 mkdir /root/.ssh
@@ -48,5 +48,5 @@ echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKQ4w3ssjImtplvuX3j5EW7N/enVo2KEsE9Xi
 
 //создаём в госте tty0 устройство для обеспечения доступа из host-OS по serial подключению
 //внимание, со стороны гипервизора тоже нужно выдать машине устройство Serial Port
-sed -i -e 's/^GRUB_CMDLINE_LINUX=.*/&\n#&/' -e 's/^GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 /' /etc/default/grub
-update-grub
+sudo sed -i -e 's/^GRUB_CMDLINE_LINUX=.*/&\n#&/' -e 's/^GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 /' /etc/default/grub
+sudo update-grub
