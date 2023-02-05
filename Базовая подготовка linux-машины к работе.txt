@@ -7,6 +7,9 @@ echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
 echo 'shopt -s histappend' | sudo tee -a /etc/bash.bashrc
 echo 'PROMPT_COMMAND="history -a;$PROMPT_COMMAND"' | sudo tee -a /etc/bash.bashrc
 
+//отключем файл свопа на корне, у нас есть диск под своп
+sudo swapoff /swap.img
+
 //настраиваем KeepAlive серверу sshd
 //ставим 10 секунд на проверку со стороны сервера sshd
 //и два недошедших от клиента серверу сообщения
@@ -43,9 +46,6 @@ sudo sed -i -e 's/^GRUB_CMDLINE_LINUX=.*/&\n#&/' -e 's/^GRUB_CMDLINE_LINUX="/GRU
 sudo update-grub
 
 //##### Пользователь root #####
-
-//отключем файл свопа на корне, у нас есть диск под своп
-sudo swapoff /swap.img
 
 //даём пароль руту
 passwd root
