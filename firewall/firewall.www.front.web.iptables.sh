@@ -1,7 +1,7 @@
 #!/bin/sh
 
-# Скрипт файрволла под http(s) back
-# Машина web005
+# Скрипт файрволла для http(s)
+# Машина 
 echo "starting flush"
 #
 # rc.flush-iptables - Resets iptables to default values.

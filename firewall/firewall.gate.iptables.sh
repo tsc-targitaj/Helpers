@@ -1,6 +1,7 @@
 #!/bin/sh
 
-#       net-gate107
+# Скрипт файрволла для шлюза
+# Машина 
 echo "starting flush"
 #
 # rc.flush-iptables - Resets iptables to default values.

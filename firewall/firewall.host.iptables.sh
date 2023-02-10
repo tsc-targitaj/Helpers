@@ -1,6 +1,7 @@
 #!/bin/sh
 
-#       host107
+# Скрипт файрфолла для host-OS
+# Машина 
 echo "starting flush"
 #
 # rc.flush-iptables - Resets iptables to default values.

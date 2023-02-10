@@ -1,0 +1,15 @@
+#port=
+domain-needed
+bogus-priv
+filterwin2k
+#resolv-file=
+#no-resolv
+#no-poll
+server=8.8.8.8
+server=8.8.4.4
+interface=br_lan
+listen-address=127.0.0.1,192.168.2.1
+no-hosts
+domain=tarh.home
+dhcp-range=192.168.2.10,192.168.2.150,48h
+dhcp-option=option:router,192.168.2.1
