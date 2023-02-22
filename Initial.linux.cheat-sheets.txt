@@ -1,6 +1,11 @@
 //########## Общесистемное ##########
 
 //генерим новый уникальный machine-id
+sudo rm -f /etc/machine-id
+sudo dbus-uuidgen --ensure=/etc/machine-id
+sudo rm /var/lib/dbus/machine-id
+sudo dbus-uuidgen --ensure
+sudo dhclient -r
 
 //делаем хистори с датой и временем
 echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
