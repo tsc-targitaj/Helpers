@@ -7,8 +7,10 @@ filterwin2k
 #no-poll
 server=8.8.8.8
 server=8.8.4.4
-interface=br_lan
-listen-address=127.0.0.1,192.168.2.1
+#interface=br_lan
+#except-interface=
+listen-address=127.0.0.1,192.168.1.6,192.168.2.1
+no-dhcp-interface=wlp70s0
 no-hosts
 domain=tarh.home
 dhcp-range=192.168.2.10,192.168.2.150,48h
