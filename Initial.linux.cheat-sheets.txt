@@ -7,6 +7,13 @@ sudo rm /var/lib/dbus/machine-id
 sudo dbus-uuidgen --ensure
 sudo dhclient -r
 
+//меняем машине hostname
+echo "Input new name" && read NAME && sudo hostnamectl set-hostname $NAME && echo "Success. New name $NAME"
+
+//генерим новые ssh ключи хоста
+sudo rm /etc/ssh/ssh_host_*key*
+sudo dpkg-reconfigure openssh-server
+
 //делаем хистори с датой и временем
 echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
 
