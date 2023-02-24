@@ -21,9 +21,6 @@ echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
 echo 'shopt -s histappend' | sudo tee -a /etc/bash.bashrc
 echo 'PROMPT_COMMAND="history -a;$PROMPT_COMMAND"' | sudo tee -a /etc/bash.bashrc
 
-//отключем файл свопа на корне, у нас есть диск под своп
-sudo swapoff /swap.img
-
 //настраиваем KeepAlive серверу sshd
 //ставим 10 секунд на проверку со стороны сервера sshd
 //и два недошедших от клиента серверу сообщения
@@ -49,6 +46,9 @@ sudo apt -y install htop atop iotop jnettop uptimed ipset fail2ban mc aptitude l
 //внимание, со стороны гипервизора тоже нужно выдать машине устройство Serial Port
 sudo sed -i -e 's/^GRUB_CMDLINE_LINUX=.*/&\n#&/' -e 's/^GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 /' /etc/default/grub
 sudo update-grub
+
+//отключем файл свопа на корне, у нас есть диск под своп
+//sudo swapoff /swap.img
 
 //########## Пользователь root ##########
 
