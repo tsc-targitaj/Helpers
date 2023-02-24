@@ -82,3 +82,5 @@ echo "# Custom options" | tee -a ~/.bashrc
 echo "force_color_prompt=yes" | tee -a ~/.bashrc
 echo "alias ll='ls -laF'" | tee -a ~/.bashrc
 echo "alias ping='ping -O -D'" | tee -a ~/.bashrc
+
+//
