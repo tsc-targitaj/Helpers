@@ -8,7 +8,7 @@ sudo dbus-uuidgen --ensure
 sudo dhclient -r
 
 //меняем машине hostname
-echo "Input new name" && read NAME && sudo hostnamectl set-hostname $NAME && echo "Success. New name $NAME"
+echo "Input new name" && read NAME && sudo hostnamectl set-hostname $NAME && echo "Success. New name $NAME. Need reboot."
 
 //генерим новые ssh ключи хоста
 sudo rm /etc/ssh/ssh_host_*key*
