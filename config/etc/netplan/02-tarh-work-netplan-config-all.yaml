@@ -25,7 +25,7 @@ network:
   bridges:
     br_lan:
       dhcp4: no
-      addresses: [192.168.2.1/24]
+      addresses: [192.168.78.21/24]
 #      routes:
 #        - to : default
 #          via: 192.168.1.1
