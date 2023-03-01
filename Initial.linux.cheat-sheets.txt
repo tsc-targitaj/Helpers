@@ -1,5 +1,10 @@
 //########## Общесистемное ##########
 
+//создаём в госте tty0 устройство для обеспечения доступа из host-OS по serial подключению
+//внимание, со стороны гипервизора тоже нужно выдать машине устройство Serial Port
+sudo sed -i -e 's/^GRUB_CMDLINE_LINUX=.*/&\n#&/' -e 's/^GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 /' /etc/default/grub
+sudo update-grub
+
 //генерим новый уникальный machine-id
 sudo rm -f /etc/machine-id
 sudo dbus-uuidgen --ensure=/etc/machine-id
@@ -41,11 +46,6 @@ update-locale LC_ALL=en_US.UTF-8
 //доустанавливаем пакеты
 sudo apt update
 sudo apt -y install htop atop iotop jnettop uptimed ipset fail2ban mc aptitude locate nmap iperf
-
-//создаём в госте tty0 устройство для обеспечения доступа из host-OS по serial подключению
-//внимание, со стороны гипервизора тоже нужно выдать машине устройство Serial Port
-sudo sed -i -e 's/^GRUB_CMDLINE_LINUX=.*/&\n#&/' -e 's/^GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 /' /etc/default/grub
-sudo update-grub
 
 //отключем файл свопа на корне, у нас есть диск под своп
 //sudo swapoff /swap.img
