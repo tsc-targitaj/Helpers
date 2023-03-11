@@ -19,7 +19,9 @@ echo "Input new name" && read NAME && sudo hostnamectl set-hostname $NAME && ech
 sudo rm /etc/ssh/ssh_host_*key*
 sudo dpkg-reconfigure openssh-server
 
-//делаем хистори с датой и временем
+//тюним хистори
+echo 'HISTFILESIZE=' | sudo tee -a /etc/bash.bashrc
+echo 'HISTSIZE=' | sudo tee -a /etc/bash.bashrc
 echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
 
 //делаем запись истории команд в bash_history немедленной
