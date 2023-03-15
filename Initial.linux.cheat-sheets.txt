@@ -19,12 +19,12 @@ echo "Input new name" && read NAME && sudo hostnamectl set-hostname $NAME && ech
 sudo rm /etc/ssh/ssh_host_*key*
 sudo dpkg-reconfigure openssh-server
 
-//тюним хистори
-echo 'HISTFILESIZE=' | sudo tee -a /etc/bash.bashrc
-echo 'HISTSIZE=' | sudo tee -a /etc/bash.bashrc
-echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
-
+//тюним /etc/bash.bashrc
+//делаем таймстемп для записей
 //делаем запись истории команд в bash_history немедленной
+echo "" | tee -a ~/.bashrc
+echo "# Custom options" | tee -a ~/.bashrc
+echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
 echo 'shopt -s histappend' | sudo tee -a /etc/bash.bashrc
 echo 'PROMPT_COMMAND="history -a;$PROMPT_COMMAND"' | sudo tee -a /etc/bash.bashrc
 
@@ -81,6 +81,8 @@ gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 //тюним пользовательский bashrc
 echo "" | tee -a ~/.bashrc
 echo "# Custom options" | tee -a ~/.bashrc
+echo 'HISTFILESIZE=' | tee -a ~/.bashrc
+echo 'HISTSIZE=' | tee -a ~/.bashrc
 echo "force_color_prompt=yes" | tee -a ~/.bashrc
 echo "alias ll='ls -laF'" | tee -a ~/.bashrc
 echo "alias ping='ping -O -D'" | tee -a ~/.bashrc
