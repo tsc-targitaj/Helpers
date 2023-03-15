@@ -22,8 +22,8 @@ sudo dpkg-reconfigure openssh-server
 //тюним /etc/bash.bashrc
 //делаем таймстемп для записей
 //делаем запись истории команд в bash_history немедленной
-echo "" | tee -a ~/.bashrc
-echo "# Custom options" | tee -a ~/.bashrc
+echo "" | sudo tee -a /etc/bash.bashrc
+echo "# Custom options" | sudo tee -a /etc/bash.bashrc
 echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
 echo 'shopt -s histappend' | sudo tee -a /etc/bash.bashrc
 echo 'PROMPT_COMMAND="history -a;$PROMPT_COMMAND"' | sudo tee -a /etc/bash.bashrc
