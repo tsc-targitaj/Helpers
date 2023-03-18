@@ -25,7 +25,6 @@ sudo dpkg-reconfigure openssh-server
 echo "" | sudo tee -a /etc/bash.bashrc
 echo "# Custom options" | sudo tee -a /etc/bash.bashrc
 echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
-echo 'shopt -s histappend' | sudo tee -a /etc/bash.bashrc
 echo 'PROMPT_COMMAND="history -a;$PROMPT_COMMAND"' | sudo tee -a /etc/bash.bashrc
 
 //настраиваем KeepAlive серверу sshd
@@ -81,6 +80,7 @@ gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 //тюним пользовательский bashrc
 echo "" | tee -a ~/.bashrc
 echo "# Custom options" | tee -a ~/.bashrc
+echo 'shopt -s histappend' | sudo tee -a /etc/bash.bashrc
 echo 'HISTFILESIZE=' | tee -a ~/.bashrc
 echo 'HISTSIZE=' | tee -a ~/.bashrc
 echo "force_color_prompt=yes" | tee -a ~/.bashrc
