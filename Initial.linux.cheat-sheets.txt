@@ -27,9 +27,12 @@ echo "# Custom options" | sudo tee -a /etc/bash.bashrc
 echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
 echo 'PROMPT_COMMAND="history -a;$PROMPT_COMMAND"' | sudo tee -a /etc/bash.bashrc
 
+//Тюним sshd
 //настраиваем KeepAlive серверу sshd
 //ставим 10 секунд на проверку со стороны сервера sshd
 //и два недошедших от клиента серверу сообщения
+//разрешаем ssh логин руту по паролю
+sudo sed -i '/\#PermitRootLogin\ prohibit-password/a PermitRootLogin\ yes' /etc/ssh/sshd_config
 sudo sed -i '/\#ClientAliveInterval/a ClientAliveInterval\ 10' /etc/ssh/sshd_config
 sudo sed -i '/\#ClientAliveCountMax/a ClientAliveCountMax\ 2' /etc/ssh/sshd_config
 sudo systemctl reload-or-restart sshd.service
@@ -56,18 +59,15 @@ sudo apt -y install htop atop iotop jnettop uptimed ipset fail2ban mc aptitude l
 //даём пароль руту
 passwd root
 
-//разрешаем ssh логин руту по паролю
-sudo sed -i '/\#PermitRootLogin\ prohibit-password/a PermitRootLogin\ yes' /etc/ssh/sshd_config
-sudo systemctl reload-or-restart sshd.service
 
 //создаём и наполняем файл доступа к руту по ключу
-mkdir /root/.ssh
-chown root:root /root/.ssh
-chmod 0700 /root/.ssh/
-touch /root/.ssh/authorized_keys
-chown root:root /root/.ssh/authorized_keys
-chmod 0600 /root/.ssh/authorized_keys
-echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKQ4w3ssjImtplvuX3j5EW7N/enVo2KEsE9XiEjGWvB mibook1701' | tee -a /root/.ssh/authorized_keys
+sudo mkdir /root/.ssh
+sudo chown root:root /root/.ssh
+sudo chmod 0700 /root/.ssh/
+sudo touch /root/.ssh/authorized_keys
+sudo chown root:root /root/.ssh/authorized_keys
+sudo chmod 0600 /root/.ssh/authorized_keys
+echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKQ4w3ssjImtplvuX3j5EW7N/enVo2KEsE9XiEjGWvB mibook1701' | sudo tee -a /root/.ssh/authorized_keys
 
 //########## Пользовательское ##########
 
