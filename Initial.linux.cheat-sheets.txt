@@ -77,6 +77,9 @@ gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<
 //сворачиваем окно вторым кликом по иконке в доке
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
+//шаг изменения громкости в gnome мультимедийными клавишами
+gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 5
+
 //тюним пользовательский bashrc
 echo "" | tee -a ~/.bashrc
 echo "# Custom options" | tee -a ~/.bashrc
