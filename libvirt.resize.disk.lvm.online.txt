@@ -1,0 +1,25 @@
+// Порядок ресайза диска виртуальной машины в окружении libvirt с применением LVM
+
+```
+host:~$virsh domblklist tarh-net
+ Target   Source
+----------------------------------------------------------------
+ sda      -
+ vda      /dev/vg_name/dummy-ubuntu-boot
+ vdb      /dev/vg_name/dummy-ubuntu-root
+ vdc      /dev/vg_name/dummy-ubuntu-home
+ vdd      /dev/vg_name/dummy-ubuntu-var
+ vde      /dev/vg_name/dummy-ubuntu-swap
+
+host:~$sudo lvresize -L12g /dev/vg_name/dummy-ubuntu-root
+  Size of logical volume vg_name/dummy-ubuntu-root changed from 11,00 GiB (2816 extents) to 12,00 GiB (3072 extents).
+  Logical volume vg_name/dummy-ubuntu-root successfully resized.
+
+host:~$ virsh blockresize tarh-net /dev/vg_name/dummy-ubuntu-root --size 12g
+Block device '/dev/vg_name/dummy-ubuntu-root' is resized
+```
+
+```
+Apr 10 10:56:38 tarh-net kernel: virtio_blk virtio6: [vdb] new size: 25165824 512-byte logical blocks (12.9 GB/12.0 GiB)
+Apr 10 10:56:38 tarh-net kernel: vdb: detected capacity change from 23068672 to 25165824
+```

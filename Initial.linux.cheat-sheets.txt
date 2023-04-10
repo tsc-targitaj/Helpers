@@ -1,43 +1,46 @@
-//########## Общесистемное ##########
+// ########## Операции с машиной после клонирования ##########
 
-//создаём в госте tty0 устройство для обеспечения доступа из host-OS по serial подключению
-//внимание, со стороны гипервизора тоже нужно выдать машине устройство Serial Port
-sudo sed -i -e 's/^GRUB_CMDLINE_LINUX=.*/&\n#&/' -e 's/^GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 /' /etc/default/grub
-sudo update-grub
-
-//генерим новый уникальный machine-id
+// генерим новый уникальный machine-id
 sudo rm -f /etc/machine-id
 sudo dbus-uuidgen --ensure=/etc/machine-id
 sudo rm /var/lib/dbus/machine-id
 sudo dbus-uuidgen --ensure
 sudo dhclient -r
 
-//меняем машине hostname
+// меняем машине hostname
 echo "Input new name" && read NAME && sudo hostnamectl set-hostname $NAME && echo "Success. New name $NAME. Need reboot."
 
-//генерим новые ssh ключи хоста
+// генерим новые ssh ключи хоста
 sudo rm /etc/ssh/ssh_host_*key*
 sudo dpkg-reconfigure openssh-server
 
-//тюним /etc/bash.bashrc
-//делаем таймстемп для записей
-//делаем запись истории команд в bash_history немедленной
+// ########## Разовые операции подготовки системы ##########
+// ########## Подготовка системы ##########
+
+// создаём в госте tty0 устройство для обеспечения доступа из host-OS по serial подключению
+// внимание, со стороны гипервизора тоже нужно выдать машине устройство Serial Port
+sudo sed -i -e 's/^GRUB_CMDLINE_LINUX=.*/&\n#&/' -e 's/^GRUB_CMDLINE_LINUX="/GRUB_CMDLINE_LINUX="console=tty0 console=ttyS0,115200 /' /etc/default/grub
+sudo update-grub
+
+// тюним /etc/bash.bashrc
+// делаем таймстемп для записей
+// делаем запись истории команд в bash_history немедленной
 echo "" | sudo tee -a /etc/bash.bashrc
 echo "# Custom options" | sudo tee -a /etc/bash.bashrc
 echo 'HISTTIMEFORMAT="%Y-%m-%d %T %Z "' | sudo tee -a /etc/bash.bashrc
 echo 'PROMPT_COMMAND="history -a;$PROMPT_COMMAND"' | sudo tee -a /etc/bash.bashrc
 
-//Тюним sshd
-//настраиваем KeepAlive серверу sshd
-//ставим 10 секунд на проверку со стороны сервера sshd
-//и два недошедших от клиента серверу сообщения
-//разрешаем ssh логин руту по паролю
+// Тюним sshd
+// настраиваем KeepAlive серверу sshd
+// ставим 10 секунд на проверку со стороны сервера sshd
+// и два недошедших от клиента серверу сообщения
+// разрешаем ssh логин руту по паролю
 sudo sed -i '/\#PermitRootLogin\ prohibit-password/a PermitRootLogin\ yes' /etc/ssh/sshd_config
 sudo sed -i '/\#ClientAliveInterval/a ClientAliveInterval\ 10' /etc/ssh/sshd_config
 sudo sed -i '/\#ClientAliveCountMax/a ClientAliveCountMax\ 2' /etc/ssh/sshd_config
 sudo systemctl reload-or-restart sshd.service
 
-//конфигурим локали
+// конфигурим локали
 locale-gen en_US.UTF-8
 locale-gen ru_RU
 locale-gen ru_RU.CP1251
@@ -47,20 +50,19 @@ update-locale LANG=en_US.UTF-8
 update-locale LANGUAGE=en_US.UTF-8
 update-locale LC_ALL=en_US.UTF-8
 
-//доустанавливаем пакеты
+// доустанавливаем пакеты
 sudo apt update
 sudo apt -y install htop atop iotop jnettop uptimed ipset fail2ban mc aptitude locate nmap iperf
 
-//отключем файл свопа на корне, у нас есть диск под своп
+// отключем файл свопа на корне, у нас есть диск под своп
 //sudo swapoff /swap.img
 
-//########## Пользователь root ##########
+// ########## Подготовка root ##########
 
-//даём пароль руту
+// даём пароль руту
 passwd root
 
-
-//создаём и наполняем файл доступа к руту по ключу
+// создаём и наполняем файл доступа к руту по ключу
 sudo mkdir /root/.ssh
 sudo chown root:root /root/.ssh
 sudo chmod 0700 /root/.ssh/
@@ -69,22 +71,22 @@ sudo chown root:root /root/.ssh/authorized_keys
 sudo chmod 0600 /root/.ssh/authorized_keys
 echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKQ4w3ssjImtplvuX3j5EW7N/enVo2KEsE9XiEjGWvB mibook1701' | sudo tee -a /root/.ssh/authorized_keys
 
-//########## Пользовательское ##########
+// ########## Пользовательское ##########
 
-//переключаем язык ввода по Alt_Shift
+// переключаем язык ввода по Alt_Shift
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source-backward "['<Alt>Shift_L']"
 
-//сворачиваем окно вторым кликом по иконке в доке
+// сворачиваем окно вторым кликом по иконке в доке
 gsettings set org.gnome.shell.extensions.dash-to-dock click-action 'minimize'
 
-//шаг изменения громкости в gnome мультимедийными клавишами
+// шаг изменения громкости в gnome мультимедийными клавишами
 gsettings set org.gnome.settings-daemon.plugins.media-keys volume-step 5
 
-//OSD Volume Number gnome plugin
+// OSD Volume Number gnome plugin
 sudo apt install chrome-gnome-shell
 https://extensions.gnome.org/extension/5461/osd-volume-number/
 
-//тюним пользовательский bashrc
+// тюним пользовательский bashrc
 echo "" | tee -a ~/.bashrc
 echo "# Custom options" | tee -a ~/.bashrc
 echo 'shopt -s histappend' | sudo tee -a /etc/bash.bashrc
