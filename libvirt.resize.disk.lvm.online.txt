@@ -23,3 +23,13 @@ Block device '/dev/vg_name/dummy-ubuntu-root' is resized
 Apr 10 10:56:38 tarh-net kernel: virtio_blk virtio6: [vdb] new size: 25165824 512-byte logical blocks (12.9 GB/12.0 GiB)
 Apr 10 10:56:38 tarh-net kernel: vdb: detected capacity change from 23068672 to 25165824
 ```
+
+// Ресайз РАЗДЕЛА онлайн делается так
+```
+growpart /dev/sda номер_раздела
+```
+
+// Для ресайза файловой системы используется, как обычно
+```
+resize2fs
+```
