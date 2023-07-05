@@ -26,7 +26,16 @@ Apr 10 10:56:38 tarh-net kernel: vdb: detected capacity change from 23068672 to 
 
 // Ресайз РАЗДЕЛА онлайн делается так
 ```
-growpart /dev/sda номер_раздела
+growpart /dev/vda номер_раздела
+```
+
+// Далее, в случае наличия внутри машины LVM, нужно увеличить PV
+```
+pvresize /dev/vdaN
+```
+// и, соответственно, увеличить LV
+```
+lvextend -l +100%FREE VG/LV
 ```
 
 // Для ресайза файловой системы используется, как обычно
