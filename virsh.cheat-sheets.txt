@@ -1,0 +1,9 @@
+// Включить автостарт машины
+```
+virsh autostart node1
+```
+
+// Выключить автостарт машины
+```
+virsh autostart --disable node
+```
