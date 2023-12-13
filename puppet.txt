@@ -1,0 +1,8 @@
+// Запустить разово клиента puppet
+```
+puppet agent --onetime --no-daemonize --server=puppet -t
+```
+
+```
+puppet agent -t --environment name --debug
+```
