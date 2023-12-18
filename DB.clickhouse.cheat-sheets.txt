@@ -5,3 +5,7 @@ select column,count(id) from dbname.tablename WHERE msec>NOW()-120  group by col
 // ########## проверка на ReadOnly ##########
 
 (while ! (echo "SELECT NOW()" | clickhouse-client -h clickhouse); do sleep 1; done) && (while (( $(echo "select count() from system.replicas where is_readonly" | clickhouse-client -h clickhouse) )); do sleep 1; done) && 
+
+// ########## посчитать размеры таблиц ##########
+
+select database, table, trunc(sum(data_compressed_bytes)/1000/1000/1000) as sizeGB from system.parts group by database, table order by sizeGB desc limit 10
