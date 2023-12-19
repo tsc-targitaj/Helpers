@@ -9,3 +9,7 @@ select column,count(id) from dbname.tablename WHERE msec>NOW()-120  group by col
 // ########## посчитать размеры таблиц ##########
 
 select database, table, trunc(sum(data_compressed_bytes)/1000/1000/1000) as sizeGB from system.parts group by database, table order by sizeGB desc limit 10
+
+// ########## установить TTL для записей в таблице лога запросов ##########
+
+ALTER TABLE system.query_log MODIFY TTL event_date + INTERVAL 2 MONTH;
