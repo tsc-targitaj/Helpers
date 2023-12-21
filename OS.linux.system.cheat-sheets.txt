@@ -1,0 +1,3 @@
+// ########## запустить обнаружение sata диска ##########
+
+echo "- - -" > /sys/class/scsi_host/hostN/scan

@@ -57,7 +57,7 @@ sudo apt -y install htop atop iotop jnettop uptimed ipset fail2ban mc aptitude l
 // отключем файл свопа на корне, у нас есть диск под своп
 //sudo swapoff /swap.img
 
-// ########## Подготовка root ##########
+// ### Подготовка root ###
 
 // даём пароль руту
 passwd root
@@ -71,7 +71,7 @@ sudo chown root:root /root/.ssh/authorized_keys
 sudo chmod 0600 /root/.ssh/authorized_keys
 echo 'ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIMKQ4w3ssjImtplvuX3j5EW7N/enVo2KEsE9XiEjGWvB mibook1701' | sudo tee -a /root/.ssh/authorized_keys
 
-// ########## Пользовательское ##########
+// ### Пользовательское ###
 
 // тюним пользовательский bashrc
 echo "" | tee -a ~/.bashrc
