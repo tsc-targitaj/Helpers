@@ -93,11 +93,11 @@ select * from pg_subscription_rel;
 // ### Бинарная репликация ###
 On master:
 select * from pg_stat_replication;
+select client_addr, state, sent_lsn, write_lsn, flush_lsn, replay_lsn from pg_stat_replication;
 select client_addr, state, sent_location, write_location, flush_location, replay_location from pg_stat_replication;
 
 On replica (streaming replication in my case):
 select * from pg_stat_wal_receiver;
-select client_addr, state, sent_lsn, write_lsn, flush_lsn, replay_lsn from pg_stat_replication;
 
 // ### Бинарная репликация с применением repmgr ###
 
