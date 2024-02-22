@@ -94,7 +94,6 @@ select * from pg_subscription_rel;
 
 repmgr cluster event
 repmgr cluster show
-repmgr cluster status
 repmgr -f /etc/repmgr.conf -h db-pg-1d -U postgres -d postgres standby clone -F
 repmgr -f /etc/repmgr.conf -h db-pg-cm1n -U postgres -d postgres standby clone -F
 repmgr -f /etc/repmgr.conf primary register 
