@@ -50,6 +50,12 @@ update-locale LANG=en_US.UTF-8
 update-locale LANGUAGE=en_US.UTF-8
 update-locale LC_ALL=en_US.UTF-8
 
+// другой вариант подготовки локалей
+grep ^'en_US.UTF-8' /etc/locale.gen || (grep '# en_US.UTF-8' /etc/locale.gen && sed -i 's/# en_US.UTF-8/en_US.UTF-8/g' /etc/locale.gen)
+grep ^'ru_RU.UTF-8' /etc/locale.gen || (grep '# ru_RU.UTF-8' /etc/locale.gen && sed -i 's/# ru_RU.UTF-8/ru_RU.UTF-8/g' /etc/locale.gen)
+sudo locale-gen
+sudo localectl set-locale LANG=en_US.UTF-8 LANGUAGE="en_US:en" LC_TIME="ru_RU.UTF-8" 
+
 // доустанавливаем пакеты
 sudo apt update
 sudo apt -y install htop atop iotop jnettop uptimed ipset fail2ban mc aptitude locate nmap iperf
