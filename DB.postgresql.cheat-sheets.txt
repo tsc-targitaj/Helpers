@@ -117,3 +117,7 @@ repmgr standby follow
 repmgr standby register
 repmgr standby unregister
 service repmgrd restart
+
+// ### Снимаем дамп с базы postgresql ###
+
+DB='name'; sudo -i -u postgres pg_dump --schema=public -f /var/lib/postgresql/$DB.public.dump.plain.`date +%Y-%m-%d_%H-%M` $DB
