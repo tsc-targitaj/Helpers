@@ -121,3 +121,8 @@ service repmgrd restart
 // ### Снимаем дамп с базы postgresql ###
 
 DB='name'; sudo -i -u postgres pg_dump --schema=public -f /var/lib/postgresql/$DB.public.dump.plain.`date +%Y-%m-%d_%H-%M` $DB
+
+// ### Посмотреть на какой машине сейчас
+
+SELECT inet_server_addr() AS hostname;
+\echo :HOST
