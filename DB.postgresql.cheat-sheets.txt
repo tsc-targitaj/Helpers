@@ -126,3 +126,7 @@ DB='name'; sudo -i -u postgres pg_dump --schema=public -f /var/lib/postgresql/$D
 
 SELECT inet_server_addr() AS hostname;
 \echo :HOST
+
+// ### Пересоздать кластер
+sudo -u postgres pg_dropcluster 16 main --stop
+sudo -u postgres pg_createcluster 16 main
