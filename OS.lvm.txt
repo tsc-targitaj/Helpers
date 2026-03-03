@@ -1,3 +1,3 @@
 // посчитать использование LV при thin lvm
 
-VG="vgssd"; THIN_POOL="lvm-ssd"; POOL_SIZE=$(lvs $VG | awk -v pool="$THIN_POOL" '$1 == pool {print $4}'); echo "$THIN_POOL total size is:   $POOL_SIZE"; lvs $VG --units g --noheadings -o lv_size | grep -v $POOL_SIZE | awk -v pool="$THIN_POOL" '{sum += $1} END {print pool " сумма LV в пуле:", sum "G"}'
+VG="vgssd"; THIN_POOL="lvm-ssd"; POOL_SIZE=$(lvs $VG --units g | awk -v pool="$THIN_POOL" '$1 == pool {print $4}'); echo "$THIN_POOL total size is:   $POOL_SIZE"; lvs $VG --units g --noheadings -o lv_size | grep -v $POOL_SIZE | awk -v pool="$THIN_POOL" '{sum += $1} END {print pool " сумма LV в пуле:", sum "G"}'
